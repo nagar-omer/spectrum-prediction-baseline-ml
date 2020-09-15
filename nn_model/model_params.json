@@ -1,0 +1,8 @@
+{
+  "lambda_min": 2,
+  "lambda_max": 9.5,
+  "n_lambda": 41,
+  "n_displacement_fields": 41,
+  "_comment_mode": "D2P: photucrrent to Spectrum,  P2D: spectrum to photocurrent",
+  "mode": "D2P"
+}
