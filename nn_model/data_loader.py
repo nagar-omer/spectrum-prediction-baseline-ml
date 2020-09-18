@@ -132,7 +132,7 @@ def sanity_test():
     D = torch.Tensor([d[0] for d in ds._data])
     P = torch.Tensor([d[1] for d in ds._data])
     ax = sns.heatmap(D,
-                     yticklabels=reduce_tick(np.linspace(400, 800, 21).round(2)),
+                     yticklabels=reduce_tick(np.linspace(673, 1073, 21).round(2)),
                      xticklabels=reduce_tick(np.linspace(0.1, 0.78, 41).round(2)))
     plt.title("Iph (nA)")
     plt.xlabel("D (V/nm)")
@@ -141,7 +141,7 @@ def sanity_test():
     plt.show()
 
     ax = sns.heatmap(P,
-                     yticklabels=reduce_tick(np.linspace(400, 800, 21).round(2)),
+                     yticklabels=reduce_tick(np.linspace(673, 1073, 21).round(2)),
                      xticklabels=reduce_tick(np.linspace(2, 9.5, 35).round(2)))
     plt.title("Power Density")
     plt.xlabel("Wavelength (\u03BCm)")
