@@ -10,13 +10,21 @@ class NaiveSpectralModel(Module):
         self._wavelengths = wavelengths.tolist()
         self._wavelengths = [self._wavelengths[0] - (self._wavelengths[1] - self._wavelengths[0])] + self._wavelengths
         self._params = params if type(params) is dict else json.load(open(params, "rt"))
-        self._linear_1 = Linear(self._params["n_displacement_fields"], self._params["n_lambda"])
-        # self._linear_2 = Linear(self._params["n_lambda"], self._params["n_lambda"])
+        if self._params["mode"] == "D2P":
+            self._linear_1 = Linear(self._params["n_displacement_fields"], self._params["n_lambda"], bias=True)
+        else:
+            self._linear_1 = Linear(self._params["n_lambda"], self._params["n_displacement_fields"], bias=True)
+
+        if self._params["mode"] == "D2P":
+            self._linear_2 = Linear(self._params["n_lambda"], self._params["n_lambda"])
+        else:
+            self._linear_2 = Linear(self._params["n_displacement_fields"], self._params["n_displacement_fields"])
 
     def forward(self, photocurrent):
+        # x = torch.tanh(self._linear_1(photocurrent))
+        # return self._linear_2(x)
         x = self._linear_1(photocurrent)
         return x
-        # return self._linear_2(x)
 
 
 if __name__ == '__main__':
